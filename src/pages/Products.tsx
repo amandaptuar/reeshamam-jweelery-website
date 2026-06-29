@@ -26,7 +26,7 @@ function ProductCard({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   
   const WHATSAPP_NUMBER = "918310696529";
-  const whatsappMessage = `I'm interested in ${product.title}`;
+  const whatsappMessage = `I'm interested in ordering:\nProduct: ${product.title}\nID: ${product.id}\nPrice Per Pc: ${product.price}`;
 
   return (
     <div className="card">

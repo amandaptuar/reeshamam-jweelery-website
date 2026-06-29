@@ -1,0 +1,26 @@
+.floating-wa {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.floating-wa:hover {
+  transform: scale(1.05);
+  background-color: #20BA56;
+}
+
+.floating-wa svg {
+  width: 32px;
+  height: 32px;
+}

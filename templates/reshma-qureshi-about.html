@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – WholesalejeweleryRessham</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:      #C8973A;
+      --gold-light:#D4A94E;
+      --gold-dark: #A87830;
+      --black:     #0D0D0D;
+      --dark:      #111111;
+      --cream:     #F2EDE4;
+      --white:     #FFFFFF;
+      --muted:     #888888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 60px;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(200,151,58,.15);
+    }
+
+    .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+    .logo-icon {
+      width: 58px; height: 58px;
+      border: 1.5px solid var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .logo-icon svg { width: 40px; height: 40px; }
+
+    .logo-text .brand { font-family:'Playfair Display',serif; font-size:12px; letter-spacing:2px; color:var(--white); display:block; }
+    .logo-text .sub   { font-size:8px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; }
+
+    .nav-links { display:flex; align-items:center; gap:38px; list-style:none; }
+    .nav-links a {
+      font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--white); text-decoration:none; padding-bottom:3px; transition:color .2s;
+    }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-links a.active { color:var(--gold); border-bottom:1.5px solid var(--gold); }
+
+    .btn-nav {
+      padding:10px 22px; border:1.5px solid var(--white);
+      background:transparent; color:var(--white);
+      font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer;
+      transition:all .2s;
+    }
+    .btn-nav:hover { background:var(--gold); border-color:var(--gold); color:var(--black); }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--white); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display:none; position:fixed; inset:0;
+      background:rgba(8,6,4,.97); z-index:999;
+      flex-direction:column; align-items:center; justify-content:center; gap:32px;
+    }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:'Playfair Display',serif; font-size:28px; color:var(--white); text-decoration:none; transition:color .2s; }
+    .mobile-menu a:hover { color:var(--gold); }
+    .mobile-close { position:absolute; top:24px; right:28px; background:none; border:none; color:var(--white); font-size:30px; cursor:pointer; }
+
+    /* ══════════════════════════════════
+       HERO BANNER  (dark bg + image right)
+    ══════════════════════════════════ */
+    .about-hero {
+      position: relative;
+      min-height: 68vh;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 90px;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    /* Full-bleed background image */
+    .about-hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      z-index: 0;
+    }
+
+    /* Image placeholder */
+    .about-hero-bg-placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg,#1c1408 0%,#2e200e 50%,#1c1408 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      border: 2px dashed #3a3020; color: #555; z-index: 0;
+    }
+    .about-hero-bg-placeholder svg { width: 44px; height: 44px; opacity: .3; }
+    .about-hero-bg-placeholder strong { color: #666; font-size: 13px; }
+    .about-hero-bg-placeholder span { font-size: 11px; opacity: .45; text-align: center; line-height: 1.6; }
+
+    /* Gradient overlay — dark left, transparent right */
+    .about-hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to right,
+        rgba(5,3,1,.90) 0%,
+        rgba(5,3,1,.65) 45%,
+        rgba(5,3,1,.12) 100%
+      );
+    }
+
+    .about-hero-content {
+      position: relative; z-index: 2;
+      padding: 60px 60px 70px;
+      max-width: 560px;
+    }
+
+    /* Eyebrow with lines */
+    .eyebrow-line {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--gold); max-width: 48px; opacity: .7;
+    }
+
+    .about-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 4.5vw, 58px);
+      font-weight: 400; line-height: 1.1;
+      color: var(--white); margin-bottom: 22px;
+    }
+    .about-hero h1 em { font-style: normal; color: var(--gold); }
+
+    .about-hero p {
+      font-size: 14px; line-height: 1.85;
+      color: #b0a898; max-width: 420px;
+    }
+
+    /* ══════════════════════════════════
+       STORY SECTION  (cream bg, 2-col)
+    ══════════════════════════════════ */
+    .story {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 420px 1fr;
+    }
+
+    /* story image */
+    .story-img { position: relative; min-height: 480px; }
+    .story-img .img-ph {
+      width: 100%; height: 100%; min-height: 480px;
+      background: linear-gradient(135deg,#2a1e10 0%,#1a1208 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+      color: #555; border: 1px dashed #3a3020;
+    }
+    .story-img .img-ph svg { width: 36px; height: 36px; opacity: .35; }
+    .story-img .img-ph strong { font-size: 12px; color: #666; }
+    .story-img .img-ph span { font-size: 10px; opacity: .45; text-align: center; line-height: 1.6; }
+
+    .story-content { padding: 70px 60px; color: var(--black); }
+
+    .story-eyebrow {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+
+    .story h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 2.8vw, 38px);
+      font-weight: 400; color: var(--black);
+      margin-bottom: 22px; line-height: 1.2;
+    }
+
+    .story p {
+      font-size: 14px; line-height: 1.85;
+      color: #555; margin-bottom: 36px; max-width: 500px;
+    }
+
+    /* Stats row */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border: 1px solid #d8d0c4;
+    }
+
+    .stat-item {
+      padding: 20px 16px; text-align: center;
+      border-right: 1px solid #d8d0c4;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-item svg { width: 26px; height: 26px; color: var(--gold); }
+
+    .stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 600; color: var(--black);
+    }
+    .stat-label { font-size: 10px; letter-spacing: .5px; color: #888; line-height: 1.4; }
+
+    /* Mobile stats list (hidden on desktop) */
+    .stats-list { display: none; }
+
+    /* ══════════════════════════════════
+       WHAT SETS US APART  (dark, 5-col)
+    ══════════════════════════════════ */
+    .apart {
+      background: var(--black);
+      padding: 72px 60px;
+    }
+
+    .apart-header {
+      text-align: center; margin-bottom: 52px;
+    }
+    .apart-header .label {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+    }
+    .apart-header .ornament {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 10px;
+    }
+    .apart-header .ornament::before,
+    .apart-header .ornament::after {
+      content: ''; width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .apart-header .ornament::after { background: linear-gradient(to left, transparent, var(--gold)); }
+
+    .apart-grid {
+      display: grid; grid-template-columns: repeat(5,1fr);
+      gap: 1px; background: #1e1e1e;
+    }
+
+    .apart-card {
+      background: var(--black);
+      padding: 44px 28px; text-align: center;
+      transition: background .25s;
+    }
+    .apart-card:hover { background: #0e0e0e; }
+
+    .apart-card svg { width: 44px; height: 44px; color: var(--gold); margin-bottom: 18px; }
+    .apart-card h3 { font-family:'Playfair Display',serif; font-size:16px; margin-bottom:12px; color:var(--white); }
+    .apart-card p  { font-size:12px; color:var(--muted); line-height:1.75; }
+
+    /* ══════════════════════════════════
+       MISSION / QUOTE STRIP
+    ══════════════════════════════════ */
+    .mission {
+      position: relative; overflow: hidden;
+      min-height: 260px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    /* full bleed bg image */
+    .mission-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      z-index: 0;
+    }
+    .mission-bg-placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg,#1c1408,#2e200e);
+      border: 1px dashed #3a3020;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      color: #555; z-index: 0;
+    }
+    .mission-bg-placeholder svg { width: 36px; height: 36px; opacity: .3; }
+    .mission-bg-placeholder strong { font-size: 12px; color: #666; }
+    .mission-bg-placeholder span { font-size: 10px; opacity: .4; }
+
+    .mission-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: rgba(6,4,2,.82);
+    }
+
+    .mission-quote {
+      position: relative; z-index: 2;
+      padding: 60px 60px;
+    }
+
+    .big-quote {
+      font-size: 80px; line-height: .7;
+      color: var(--gold); opacity: .6;
+      font-family: Georgia, serif;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .mission-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 400; line-height: 1.5;
+      color: var(--white); font-style: italic;
+    }
+
+    .mission-founder {
+      position: relative; z-index: 2;
+      padding: 60px 60px;
+      text-align: center;
+      border-left: 1px solid rgba(200,151,58,.25);
+    }
+
+    .founder-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-style: italic;
+      color: var(--gold); margin-bottom: 8px;
+    }
+    .founder-title { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+    .founder-company { font-size: 11px; letter-spacing: 2px; color: #666; margin-top: 2px; }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer {
+      background: #080808;
+      padding: 36px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid #1e1e1e;
+      flex-wrap: wrap; gap: 20px;
+    }
+
+    .footer-logo { display:flex; align-items:center; gap:12px; }
+    .footer-logo .logo-icon { width:44px; height:44px; }
+    .footer-logo .logo-icon svg { width:32px; height:32px; }
+
+    .social-links { display:flex; gap:12px; }
+    .social-links a {
+      width:34px; height:34px; border:1px solid #2a2a2a;
+      display:flex; align-items:center; justify-content:center;
+      color:#777; text-decoration:none; transition:all .2s;
+    }
+    .social-links a:hover { border-color:var(--gold); color:var(--gold); }
+    .social-links svg { width:15px; height:15px; }
+
+    .footer-copy { font-size:11px; color:#444; }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 960px) {
+      nav { padding: 14px 24px; }
+      .nav-links, .btn-nav { display: none; }
+      .hamburger { display: flex; }
+
+      .about-hero-content { padding: 40px 24px 56px; }
+
+      .story { grid-template-columns: 1fr; }
+      .story-img .img-ph { min-height: 260px; }
+      .story-content { padding: 44px 24px; }
+
+      /* swap stat grid for list on mobile */
+      .stats-grid { display: none; }
+      .stats-list {
+        display: flex; flex-direction: column; gap: 0;
+        border: 1px solid #d8d0c4;
+      }
+      .stats-list-item {
+        display: flex; align-items: center; gap: 16px;
+        padding: 14px 18px; border-bottom: 1px solid #d8d0c4;
+        color: var(--black);
+      }
+      .stats-list-item:last-child { border-bottom: none; }
+      .stats-list-item svg { width: 22px; height: 22px; color: var(--gold); flex-shrink: 0; }
+      .stats-list-item .sl-val { font-family:'Playfair Display',serif; font-size:16px; font-weight:600; }
+      .stats-list-item .sl-label { font-size:12px; color:#888; }
+
+      .apart { padding: 52px 24px; }
+      .apart-grid { grid-template-columns: 1fr; gap: 1px; }
+      .apart-card { display: flex; align-items: flex-start; gap: 18px; text-align: left; padding: 24px 20px; }
+      .apart-card svg { margin-bottom: 0; flex-shrink: 0; width: 36px; height: 36px; }
+
+      .mission { grid-template-columns: 1fr; }
+      .mission-founder { border-left: none; border-top: 1px solid rgba(200,151,58,.25); padding: 32px 24px 48px; }
+      .mission-quote { padding: 48px 24px 32px; }
+
+      footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .about-hero h1 { font-size: 30px; }
+      .story h2 { font-size: 26px; }
+      .mission-quote blockquote { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <nav>
+    <a href="reshma-qureshi-jewellery.html" class="logo-wrap">
+      <div class="logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 6L22 18L10 12L16 28L44 28L50 12L38 18Z" fill="none" stroke="#C8973A" stroke-width="1.5"/>
+          <circle cx="30" cy="6" r="2" fill="#C8973A"/>
+          <circle cx="10" cy="12" r="2" fill="#C8973A"/>
+          <circle cx="50" cy="12" r="2" fill="#C8973A"/>
+          <text x="11" y="50" font-family="Georgia,serif" font-size="20" font-weight="bold" fill="#C8973A">R</text>
+          <text x="30" y="50" font-family="Georgia,serif" font-size="20" font-weight="bold" fill="#C8973A">Q</text>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="brand">WholesalejeweleryRessham</span>
+        <span class="sub">Jewellery</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="reshma-qureshi-jewellery.html">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#" class="active">About Us</a></li>
+    </ul>
+
+    <button class="btn-nav">Get In Touch</button>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMenu()">✕</button>
+    <a href="reshma-qureshi-jewellery.html" onclick="toggleMenu()">Home</a>
+    <a href="#" onclick="toggleMenu()">Products</a>
+    <a href="#" onclick="toggleMenu()">About Us</a>
+    <a href="#" onclick="toggleMenu()">Get In Touch</a>
+  </div>
+
+  <!-- ══════════════ ABOUT HERO ══════════════ -->
+  <section class="about-hero">
+
+    <!-- BG IMAGE PLACEHOLDER — Replace with: <img class="about-hero-bg" src="your-necklace-hero.jpg" alt=""> -->
+    <div class="about-hero-bg-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <strong>About Hero Background Image</strong>
+      <span>Jewellery product hero — right-side subject<br>Recommended: 1920×800px</span>
+    </div>
+
+    <div class="about-hero-overlay"></div>
+
+    <div class="about-hero-content">
+      <div class="eyebrow-line">About Us</div>
+      <h1>Crafting Trust.<br>Delivering <em>Excellence.</em></h1>
+      <p>WholesalejeweleryRessham is a trusted name in the wholesale jewellery industry, known for our commitment to quality, elegance and lasting relationships.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ OUR STORY ══════════════ -->
+  <section class="story">
+
+    <!-- Story image placeholder — Replace with: <img src="craftsman.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"> -->
+    <div class="story-img">
+      <div class="img-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <strong>Our Story Image</strong>
+        <span>Craftsman / artisan at work<br>Recommended: 420×480px</span>
+      </div>
+    </div>
+
+    <div class="story-content">
+      <p class="story-eyebrow">Our Story</p>
+      <h2>From Passion to Perfection</h2>
+      <p>Established in 2019, WholesalejeweleryRessham began with a simple vision – to create exquisite jewellery that blends traditional artistry with contemporary design. Today, we proudly serve clients across India and around the world with our wide range of premium wholesale jewellery.</p>
+
+      <!-- Desktop stats grid -->
+      <div class="stats-grid">
+        <div class="stat-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div class="stat-val">2019</div>
+          <div class="stat-label">Year of<br>Establishment</div>
+        </div>
+        <div class="stat-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <div class="stat-val">21–50</div>
+          <div class="stat-label">Dedicated<br>Employees</div>
+        </div>
+        <div class="stat-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+          <div class="stat-val">Global</div>
+          <div class="stat-label">Clients in India<br>&amp; Worldwide</div>
+        </div>
+        <div class="stat-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <div class="stat-val">Trust</div>
+          <div class="stat-label">Built on Quality<br>&amp; Commitment</div>
+        </div>
+      </div>
+
+      <!-- Mobile stats list -->
+      <div class="stats-list">
+        <div class="stats-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><div class="sl-val">2019</div><div class="sl-label">Year of Establishment</div></div>
+        </div>
+        <div class="stats-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <div><div class="sl-val">21–50</div><div class="sl-label">Dedicated Employees</div></div>
+        </div>
+        <div class="stats-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+          <div><div class="sl-val">Global</div><div class="sl-label">Clients in India &amp; Worldwide</div></div>
+        </div>
+        <div class="stats-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <div><div class="sl-val">Trust</div><div class="sl-label">Built on Quality &amp; Commitment</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ WHAT SETS US APART ══════════════ -->
+  <section class="apart">
+    <div class="apart-header">
+      <div class="label">What Sets Us Apart</div>
+      <div class="ornament">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l1.5 4.5H18l-3.75 2.7 1.5 4.5L12 11.1l-3.75 2.6 1.5-4.5L6 6.5h4.5Z"/></svg>
+      </div>
+    </div>
+
+    <div class="apart-grid">
+      <div class="apart-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <div>
+          <h3>Premium Quality</h3>
+          <p>We use the finest materials and follow strict quality standards.</p>
+        </div>
+      </div>
+      <div class="apart-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+        </svg>
+        <div>
+          <h3>Exquisite Designs</h3>
+          <p>A perfect blend of traditional craftsmanship and modern trends.</p>
+        </div>
+      </div>
+      <div class="apart-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+        </svg>
+        <div>
+          <h3>Wholesale Advantage</h3>
+          <p>Competitive pricing and exclusive designs for our business partners.</p>
+        </div>
+      </div>
+      <div class="apart-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/>
+        </svg>
+        <div>
+          <h3>Global Reach</h3>
+          <p>Exporting and supplying to clients across the globe.</p>
+        </div>
+      </div>
+      <div class="apart-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+        </svg>
+        <div>
+          <h3>Customer Commitment</h3>
+          <p>We believe in long-term relationships built on trust, transparency and respect.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MISSION / FOUNDER ══════════════ -->
+  <section class="mission">
+
+    <!-- BG PLACEHOLDER — Replace with: <img class="mission-bg" src="jewellery-bg.jpg" alt=""> -->
+    <div class="mission-bg-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <strong>Mission Section Background</strong>
+      <span>Dark jewellery texture / coins bg<br>Recommended: 1920×320px</span>
+    </div>
+
+    <div class="mission-overlay"></div>
+
+    <div class="mission-quote">
+      <span class="big-quote">"</span>
+      <blockquote>Our mission is to empower jewellery businesses with designs that inspire, quality that lasts, and service that exceeds expectations.</blockquote>
+    </div>
+
+    <div class="mission-founder">
+      <div class="founder-name">WholesalejeweleryRessham</div>
+      <div class="founder-title">Founder</div>
+      <div class="founder-company">WholesalejeweleryRessham</div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 6L22 18L10 12L16 28L44 28L50 12L38 18Z" fill="none" stroke="#C8973A" stroke-width="1.5"/>
+          <circle cx="30" cy="6" r="2" fill="#C8973A"/>
+          <circle cx="10" cy="12" r="2" fill="#C8973A"/>
+          <circle cx="50" cy="12" r="2" fill="#C8973A"/>
+          <text x="11" y="50" font-family="Georgia,serif" font-size="20" font-weight="bold" fill="#C8973A">R</text>
+          <text x="30" y="50" font-family="Georgia,serif" font-size="20" font-weight="bold" fill="#C8973A">Q</text>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="brand">WholesalejeweleryRessham</span>
+        <span class="sub">Jewellery</span>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="#" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2024 WholesalejeweleryRessham. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

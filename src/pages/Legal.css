@@ -1,0 +1,123 @@
+/* ══════════════════════════════════
+   LEGAL HERO
+══════════════════════════════════ */
+.legal-hero {
+  position: relative;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+  text-align: center;
+}
+
+.legal-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.legal-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+
+.legal-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.legal-hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0;
+}
+.legal-hero-divider::before, .legal-hero-divider::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: var(--gold);
+}
+.legal-hero-divider svg {
+  color: var(--gold);
+  width: 16px;
+  height: 16px;
+  margin: 0 16px;
+}
+
+.legal-hero-desc {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════
+   LEGAL CONTENT
+══════════════════════════════════ */
+.legal-content {
+  background: var(--cream);
+  color: var(--black);
+  padding: 80px 24px;
+}
+
+.legal-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 60px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  border-top: 4px solid var(--gold);
+}
+
+.legal-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--black);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.last-updated {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.legal-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--gold-dark);
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.legal-section p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.legal-separator {
+  border: 0;
+  height: 1px;
+  background: #e5dfd3;
+  margin: 60px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .legal-container { padding: 40px 24px; }
+  .legal-section h2 { font-size: 28px; }
+  .legal-section h3 { font-size: 18px; }
+  .legal-section p { font-size: 14px; }
+}

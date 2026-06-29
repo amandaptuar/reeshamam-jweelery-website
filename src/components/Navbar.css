@@ -1,0 +1,70 @@
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 60px;
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(200,151,58,.15);
+}
+
+.logo-wrap { display: flex; align-items: center; text-decoration: none; }
+
+.brand-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links { display: flex; align-items: center; gap: 38px; list-style: none; }
+.nav-links a { 
+  font-size: 12px; 
+  letter-spacing: 1.5px; 
+  text-transform: uppercase; 
+  color: var(--white); 
+  text-decoration: none; 
+  padding-bottom: 3px; 
+  transition: color .2s; 
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); border-bottom: 1.5px solid var(--gold); }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all .3s; }
+
+/* MOBILE NAV MENU */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(8,6,4,.97);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--white);
+  text-decoration: none;
+  transition: color .2s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-close {
+  position: absolute; top: 24px; right: 28px;
+  background: none; border: none;
+  color: var(--white); font-size: 30px; cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .btn-nav { display: none; }
+  .hamburger { display: flex; }
+}

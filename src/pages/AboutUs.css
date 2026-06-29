@@ -241,6 +241,11 @@
    RESPONSIVE
 ══════════════════════════════════ */
 @media (max-width: 960px) {
+  .about-hero {
+    min-height: auto;
+    padding-top: 120px;
+    align-items: center;
+  }
   .about-hero-content { padding: 40px 24px 56px; }
 
   .story { grid-template-columns: 1fr; }

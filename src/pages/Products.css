@@ -154,7 +154,7 @@
   }
 
   @media (max-width: 768px) {
-    .hero { padding: 48px 20px; min-height: auto; }
+    .hero { padding: 100px 20px 48px; min-height: auto; }
     .hero-title { font-size: 30px; }
 
     .mobile-filter-bar { display: flex; }

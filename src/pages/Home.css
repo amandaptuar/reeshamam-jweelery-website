@@ -259,8 +259,9 @@ textarea.form-input { min-height: 100px; resize: vertical; }
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   .hero {
-    min-height: 100vh;
-    align-items: flex-end;
+    min-height: auto;
+    padding-top: 120px;
+    align-items: center;
   }
   .hero-bg {
     object-position: center top;
@@ -295,7 +296,7 @@ textarea.form-input { min-height: 100px; resize: vertical; }
 
 @media (max-width: 480px) {
   .hero {
-    align-items: flex-end;
+    align-items: center;
   }
   .hero-bg {
     object-position: 65% top;

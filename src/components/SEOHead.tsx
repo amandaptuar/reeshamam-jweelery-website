@@ -234,7 +234,7 @@ export default function SEOHead({
       <meta name="twitter:image:alt" content={`${SITE_NAME} - Premium Wholesale Artificial Jewellery`} />
 
       {/* ═══ Verification Placeholders ═══ */}
-      <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_VERIFICATION_CODE" />
+      <meta name="google-site-verification" content="3GNoT0YOuj7dIPMCq-Cp4ZOQ0SAlkNmcLUy7BFUS5fc" />
       <meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE" />
       <meta name="yandex-verification" content="REPLACE_WITH_YANDEX_VERIFICATION_CODE" />
 

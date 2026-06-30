@@ -8,6 +8,7 @@ import Products from './pages/Products';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import FloatingInstagram from './components/FloatingInstagram';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       </Routes>
       <Footer />
       <FloatingWhatsApp />
+      <FloatingInstagram />
     </Router>
   );
 }

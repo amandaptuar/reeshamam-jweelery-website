@@ -115,7 +115,7 @@ export default function Home() {
                   <path d="M48 90 Q55 96 62 90" stroke="#C8973A" strokeWidth="1.5" fill="none" opacity=".8"/>
                 </svg>
                 <div style={{ width: '110px', height: '110px', border: '1.5px solid #C8973A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: '#f5f0e8' }}>
-                  <div className="number">5<span style={{ fontSize: '22px', verticalAlign: 'super' }}>+</span></div>
+                  <div className="number">8<span style={{ fontSize: '22px', verticalAlign: 'super' }}>+</span></div>
                   <div className="label">Years of<br/>Excellence</div>
                 </div>
               </div>
@@ -153,6 +153,32 @@ export default function Home() {
           </svg>
           <h3>Customer Satisfaction</h3>
           <p>Building long-term relationships with our valued clients.</p>
+        </div>
+      </section>
+
+      {/* ═══ TOP PRODUCTS ═══ */}
+      <section className="top-products">
+        <div className="top-products-header">
+          <p className="section-eyebrow">Discover</p>
+          <h2>Our Top Products</h2>
+          <div className="hero-divider" style={{ margin: '20px auto 24px' }}>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.5 4.5H18l-3.75 2.7 1.5 4.5L12 11.1l-3.75 2.6 1.5-4.5L6 6.5h4.5Z"/></svg>
+          </div>
+          <p className="top-products-desc">Explore our handpicked selection of premium jewellery pieces, carefully crafted for perfection.</p>
+        </div>
+        
+        <div className="products-grid">
+          {[1, 2, 3, 4].map((item) => (
+            <div className="product-card" key={item}>
+              <div className="product-img-wrap">
+                <div className="product-placeholder">Image {item}</div>
+              </div>
+              <div className="product-info">
+                <h3>Exquisite Piece {item}</h3>
+                <p>Premium Quality</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

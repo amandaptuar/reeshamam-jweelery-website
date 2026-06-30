@@ -1,5 +1,26 @@
 import './Legal.css';
 import { useEffect } from 'react';
+import SEOHead from '../components/SEOHead';
+
+const LEGAL_TITLE = 'Privacy Policy & Terms of Conditions | Reshmi Qureshi Wholesale Jewellery';
+const LEGAL_DESC = 'Read the privacy policy and terms of conditions for Reshmi Qureshi Wholesale Jewellery — your trusted artificial jewellery manufacturer & supplier from Mumbai, India.';
+const LEGAL_KEYWORDS = 'reshmi qureshi privacy policy, reshmi qureshi terms and conditions, wholesale jewellery terms, artificial jewellery supplier privacy, jewellery manufacturer legal, wholesalejewelryressham privacy, wholesale jewellery india legal, jewellery business terms india';
+
+const LEGAL_BREADCRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Legal', url: '/legal' },
+];
+
+const LEGAL_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: LEGAL_TITLE,
+  description: LEGAL_DESC,
+  url: 'https://wholesalejewelryressham.online/legal',
+  isPartOf: { '@type': 'WebSite', url: 'https://wholesalejewelryressham.online' },
+  about: { '@type': 'Organization', name: 'Reshmi Qureshi Wholesale Jewellery' },
+  dateModified: '2023-10-01',
+};
 
 export default function Legal() {
   useEffect(() => {
@@ -8,23 +29,33 @@ export default function Legal() {
 
   return (
     <>
-      <section className="legal-hero">
+      <SEOHead
+        title={LEGAL_TITLE}
+        description={LEGAL_DESC}
+        keywords={LEGAL_KEYWORDS}
+        canonicalPath="/legal"
+        robots="noindex, follow"
+        breadcrumbs={LEGAL_BREADCRUMBS}
+        jsonLd={LEGAL_JSON_LD}
+      />
+
+      <section className="legal-hero" aria-label="Legal information — Reshmi Qureshi Wholesale Jewellery">
         <div className="legal-hero-overlay"></div>
         <div className="legal-hero-content">
           <h1>Legal Information</h1>
           <div className="legal-hero-divider">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
           </div>
-          <p className="legal-hero-desc">Privacy Policy & Terms of Conditions</p>
+          <p className="legal-hero-desc">Privacy Policy &amp; Terms of Conditions</p>
         </div>
       </section>
 
-      <section className="legal-content">
+      <section className="legal-content" aria-label="Legal documents">
         <div className="legal-container">
           <div className="legal-section" id="privacy">
             <h2>Privacy Policy</h2>
             <p className="last-updated">Last Updated: October 2023</p>
-            
+
             <h3>1. Information We Collect</h3>
             <p>At WholesalejeweleryRessham, we collect information that you provide directly to us when making inquiries, subscribing to our newsletter, or contacting us through our platform. This includes your name, email address, phone number, and business details.</p>
 
@@ -40,7 +71,7 @@ export default function Legal() {
           <div className="legal-section" id="terms">
             <h2>Terms of Conditions</h2>
             <p className="last-updated">Last Updated: October 2023</p>
-            
+
             <h3>1. General Terms</h3>
             <p>By accessing or using our platform, you agree to be bound by these Terms of Conditions. If you disagree with any part of the terms, you may not access our services.</p>
 

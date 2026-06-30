@@ -2,6 +2,38 @@ import { useState, useEffect } from 'react';
 import './Products.css';
 import heroImage from '../assets/product-hero.png';
 import { supabase } from '../lib/supabase';
+import SEOHead from '../components/SEOHead';
+
+const PRODUCTS_TITLE = 'Wholesale Artificial Jewellery Collection — Necklaces, Earrings, Bangles & More | Reshmi Qureshi';
+const PRODUCTS_DESC = 'Browse our wholesale artificial jewellery collection. Necklace sets, earrings, bangles, rings & bracelets. Bulk order pricing, premium quality from Mumbai, India.';
+const PRODUCTS_KEYWORDS = 'wholesale artificial jewellery collection, wholesale necklace sets, wholesale earrings, wholesale bangles, wholesale rings, wholesale bracelets, artificial jewellery for sale, buy wholesale jewellery india, bulk jewellery purchase, jewellery bulk order, minimum order jewellery india, wholesale jewellery price, artificial jewellery price, necklace manufacturer india, necklace set wholesale, choker necklace wholesale, long necklace wholesale, bridal necklace wholesale, gold plated necklace, oxidised necklace, kundan necklace, polki necklace, american diamond necklace, earrings manufacturer india, jhumka earrings wholesale, chandbali earrings wholesale, drop earrings wholesale, stud earrings wholesale, statement earrings wholesale, hoop earrings wholesale, artificial earrings india, bangles manufacturer india, bangle set wholesale, gold plated bangles, oxidised bangles, designer bangles, traditional bangles, rings manufacturer india, fashion rings wholesale, artificial rings india, bracelets manufacturer india, bracelet set wholesale, chain bracelet wholesale, artificial bracelets india, jewellery set manufacturer, bridal jewellery set, occasion jewellery, party wear jewellery, wedding jewellery wholesale, festival jewellery wholesale, ethnic jewellery collection, traditional ethnic jewellery, south indian jewellery, rajasthani jewellery, meenakari jewellery, temple jewellery, antique jewellery wholesale, silver plated jewellery, rhodium plated jewellery, trendy jewellery collection, latest design jewellery, new design artificial jewellery, designer jewellery wholesale, handcrafted jewellery india, premium artificial jewellery, quality jewellery collection, wholesale jewellery catalogue, jewellery for boutiques india, jewellery for retailers india, jewellery for resellers india, b2b jewellery supplier india, dropship jewellery india, wholesale fashion accessories, jewellery accessories wholesale, artificial jewellery online india, buy artificial jewellery online, wholesale jewellery online india, reshmi qureshi jewellery collection, reshmi qureshi products, wholesalejewelryressham collection';
+
+const PRODUCTS_BREADCRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Products', url: '/products' },
+];
+
+const PRODUCTS_FAQS = [
+  { question: 'What jewellery categories are available for wholesale purchase?', answer: 'We offer wholesale artificial jewellery across multiple categories including necklace sets, earrings, bangles, rings, bracelets, and bridal jewellery sets. All available for bulk orders.' },
+  { question: 'Can I filter jewellery by category?', answer: 'Yes, you can browse our wholesale jewellery collection by category: All Products, Necklace Sets, Earrings, Bangles, Rings, and Bracelets. Use the filter bar at the top of the products page.' },
+  { question: 'How do I place a wholesale order for jewellery?', answer: 'Click the "Order on WhatsApp" button on any product to send an inquiry directly to our team. We will respond with availability, pricing, and minimum order details.' },
+  { question: 'Do you have bridal jewellery sets for wholesale?', answer: 'Yes, we manufacture premium quality wholesale artificial bridal jewellery sets including kundan, polki, American diamond, and gold-plated designs suitable for weddings and occasions.' },
+];
+
+const PRODUCTS_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: PRODUCTS_TITLE,
+  description: PRODUCTS_DESC,
+  url: 'https://wholesalejewelryressham.online/products',
+  isPartOf: { '@type': 'WebSite', url: 'https://wholesalejewelryressham.online' },
+  about: { '@type': 'Organization', name: 'Reshmi Qureshi Wholesale Jewellery' },
+  provider: {
+    '@type': 'Organization',
+    name: 'Reshmi Qureshi Wholesale Jewellery',
+    url: 'https://wholesalejewelryressham.online',
+  },
+};
 
 interface Product {
   id: string;
@@ -24,36 +56,51 @@ const CATEGORIES = [
 
 function ProductCard({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
-  
   const WHATSAPP_NUMBER = "918310696529";
   const whatsappMessage = `I'm interested in ordering:\nProduct: ${product.title}\nID: ${product.id}\nPrice Per Pc: ${product.price}\nImage Link: ${product.image_url}`;
 
   return (
-    <div className="card">
+    <div className="card" itemScope itemType="https://schema.org/Product">
+      <meta itemProp="brand" content="Reshmi Qureshi Wholesale Jewellery" />
+      <meta itemProp="sku" content={product.id} />
+      <meta itemProp="availability" content={product.in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'} />
       <div className="card-header">
-        <span className="card-title">{product.title}</span>
-        <button 
-          className="card-heart" 
-          aria-label="Wishlist"
+        <span className="card-title" itemProp="name">{product.title}</span>
+        <button
+          className="card-heart"
+          aria-label={isWishlisted ? `Remove ${product.title} from wishlist` : `Add ${product.title} to wishlist`}
           onClick={() => setIsWishlisted(!isWishlisted)}
           style={{ color: isWishlisted ? '#e57373' : '#bbb' }}
         >
           {isWishlisted ? '♥' : '♡'}
         </button>
       </div>
-      
-      <div className="card-img-wrap" style={{ background: 'none' }}>
-        <img src={product.image_url} alt={product.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+
+      <div className="card-img-wrap" style={{ background: 'none' }} itemProp="image">
+        <img
+          src={product.image_url}
+          alt={`${product.title} — wholesale artificial jewellery by Reshmi Qureshi, Mumbai India`}
+          title={`${product.title} | Wholesale Artificial Jewellery`}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          loading="lazy"
+          decoding="async"
+          width="400"
+          height="400"
+        />
       </div>
-      
-      <div className="card-info">
+
+      <div className="card-info" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+        <meta itemProp="priceCurrency" content="INR" />
+        <meta itemProp="price" content={product.price} />
+        <meta itemProp="availability" content={product.in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'} />
+        <meta itemProp="seller" content="Reshmi Qureshi Wholesale Jewellery" />
         <div className="info-col">
           <div className="info-label">Minimum Quantity</div>
           <div className="info-value">{product.quantity_label}</div>
         </div>
         <div className="info-col">
           <div className="info-label">Price Per Pc</div>
-          <div className="info-value">{product.price}</div>
+          <div className="info-value" itemProp="price">{product.price}</div>
         </div>
         <div className="info-col">
           <div className="info-label">In Stock</div>
@@ -62,14 +109,15 @@ function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
       </div>
-      
-      <a 
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`} 
-        className="btn-whatsapp" 
+
+      <a
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`}
+        className="btn-whatsapp"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`Order ${product.title} on WhatsApp`}
       >
-        <span className="wa-icon">💬</span> Order on WhatsApp
+        <span className="wa-icon" aria-hidden="true">💬</span> Order on WhatsApp
       </a>
     </div>
   );
@@ -82,27 +130,18 @@ export default function Products() {
 
   useEffect(() => {
     fetchProducts();
-    
-    // Subscribe to realtime updates
     const channel = supabase
       .channel('public:products')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, () => {
-        fetchProducts(); // Refresh list on any change
+        fetchProducts();
       })
       .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    return () => { supabase.removeChannel(channel); };
   }, []);
 
   const fetchProducts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .order('created_at', { ascending: false });
-
+      const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: false });
       if (error) throw error;
       if (data) setProducts(data);
     } catch (error) {
@@ -112,43 +151,63 @@ export default function Products() {
     }
   };
 
-  const filteredProducts = products.filter((product) => 
+  const filteredProducts = products.filter((product) =>
     activeCategory === 'all' || product.category === activeCategory
   );
 
   return (
     <main className="products-page">
-      {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="hero">
-        <div className="hero-bg">
-          <img src={heroImage} alt="Jewellery Collection" />
-        </div>
+      <SEOHead
+        title={PRODUCTS_TITLE}
+        description={PRODUCTS_DESC}
+        keywords={PRODUCTS_KEYWORDS}
+        canonicalPath="/products"
+        ogType="website"
+        breadcrumbs={PRODUCTS_BREADCRUMBS}
+        faqs={PRODUCTS_FAQS}
+        jsonLd={PRODUCTS_JSON_LD}
+      />
 
+      {/* ═══════════════════ HERO ═══════════════════ */}
+      <section className="hero" aria-label="Wholesale Artificial Jewellery Collection">
+        <div className="hero-bg">
+          <img
+            src={heroImage}
+            alt="Wholesale artificial jewellery collection — necklaces, earrings, bangles by Reshmi Qureshi Mumbai"
+            title="Wholesale Artificial Jewellery Collection | Reshmi Qureshi"
+            width="1920"
+            height="600"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
         <div className="hero-content">
           <p className="hero-eyebrow">Our Collection</p>
           <h1 className="hero-title">Wholesale Jewellery Collection</h1>
-          <div className="hero-ornament">❧</div>
-          <p className="hero-desc">Discover our wide range of premium quality jewellery, crafted with precision and available at competitive wholesale prices.</p>
+          <div className="hero-ornament" aria-hidden="true">❧</div>
+          <p className="hero-desc">Discover our wide range of premium quality artificial jewellery, crafted with precision and available at competitive wholesale prices for bulk orders.</p>
         </div>
       </section>
 
       {/* ═══════════════════ MOBILE FILTER ═══════════════════ */}
-      <div className="mobile-filter-bar">
-        <button className="mobile-filter-btn">☰ &nbsp;Filter</button>
-        <button className="mobile-sortby-btn">Sort By &nbsp;▾</button>
+      <div className="mobile-filter-bar" role="toolbar" aria-label="Product filter options">
+        <button className="mobile-filter-btn" aria-label="Filter products by category">☰ &nbsp;Filter</button>
+        <button className="mobile-sortby-btn" aria-label="Sort products">Sort By &nbsp;▾</button>
       </div>
 
       {/* ═══════════════════ PRODUCTS ═══════════════════ */}
-      <section className="products-section">
+      <section className="products-section" aria-label="Wholesale jewellery products listing">
         {/* Desktop Filter Bar */}
-        <div className="filter-bar">
+        <div className="filter-bar" role="toolbar" aria-label="Category filter">
           <div className="categories">
             <span className="cat-label">Categories:</span>
             {CATEGORIES.map((cat) => (
-              <button 
+              <button
                 key={cat.id}
                 className={`cat-btn ${activeCategory === cat.id ? 'active' : ''}`}
                 onClick={() => setActiveCategory(cat.id)}
+                aria-pressed={activeCategory === cat.id}
+                aria-label={`Filter by ${cat.label}`}
               >
                 {cat.label}
               </button>
@@ -156,7 +215,7 @@ export default function Products() {
           </div>
           <div className="sort-wrap">
             <span className="sort-label">Sort By:</span>
-            <select className="sort-select">
+            <select className="sort-select" aria-label="Sort products">
               <option>Latest</option>
               <option>Price: Low to High</option>
               <option>Price: High to Low</option>
@@ -166,13 +225,15 @@ export default function Products() {
 
         {/* Grid */}
         {loading ? (
-          <p style={{ textAlign: 'center', padding: '40px' }}>Loading products...</p>
+          <p style={{ textAlign: 'center', padding: '40px' }} aria-live="polite">Loading wholesale jewellery products...</p>
         ) : filteredProducts.length === 0 ? (
-          <p style={{ textAlign: 'center', padding: '40px' }}>No products found in this category.</p>
+          <p style={{ textAlign: 'center', padding: '40px' }} aria-live="polite">No products found in this category. Please check back soon.</p>
         ) : (
-          <div className="products-grid">
+          <div className="products-grid" role="list" aria-label="Wholesale jewellery products">
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <div role="listitem" key={product.id}>
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         )}

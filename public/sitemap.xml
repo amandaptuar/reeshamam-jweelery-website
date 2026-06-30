@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xsi:schemaLocation="
+    http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+    http://www.google.com/schemas/sitemap-image/1.1
+    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- ═══════════════════════════════════
+       HOME PAGE
+  ═══════════════════════════════════ -->
+  <url>
+    <loc>https://wholesalejewelryressham.online/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://wholesalejewelryressham.online/og-image.jpg</image:loc>
+      <image:caption>Reshmi Qureshi — Wholesale Artificial Jewellery Manufacturer Mumbai India</image:caption>
+      <image:title>Wholesale Artificial Jewellery Manufacturer &amp; Supplier | Reshmi Qureshi</image:title>
+    </image:image>
+  </url>
+
+  <!-- ═══════════════════════════════════
+       PRODUCTS PAGE
+  ═══════════════════════════════════ -->
+  <url>
+    <loc>https://wholesalejewelryressham.online/products</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://wholesalejewelryressham.online/og-image.jpg</image:loc>
+      <image:caption>Wholesale Artificial Jewellery Collection — Necklaces, Earrings, Bangles, Rings &amp; Bracelets</image:caption>
+      <image:title>Wholesale Artificial Jewellery Collection | Reshmi Qureshi</image:title>
+    </image:image>
+  </url>
+
+  <!-- ═══════════════════════════════════
+       ABOUT PAGE
+  ═══════════════════════════════════ -->
+  <url>
+    <loc>https://wholesalejewelryressham.online/about</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://wholesalejewelryressham.online/og-image.jpg</image:loc>
+      <image:caption>About Reshmi Qureshi — Wholesale Artificial Jewellery Manufacturer Since 2019</image:caption>
+      <image:title>About Reshmi Qureshi Wholesale Jewellery</image:title>
+    </image:image>
+  </url>
+
+  <!-- ═══════════════════════════════════
+       LEGAL PAGE
+  ═══════════════════════════════════ -->
+  <url>
+    <loc>https://wholesalejewelryressham.online/legal</loc>
+    <lastmod>2023-10-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

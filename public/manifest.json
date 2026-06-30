@@ -1,0 +1,41 @@
+{
+  "name": "Reshmi Qureshi Wholesale Jewellery",
+  "short_name": "Reshmi Jewellery",
+  "description": "Wholesale artificial jewellery manufacturer, exporter & supplier from Mumbai, India. Premium quality fashion jewellery for bulk orders.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1209",
+  "theme_color": "#C8973A",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["shopping", "fashion", "business"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Browse Collection",
+      "short_name": "Products",
+      "description": "Browse our wholesale jewellery collection",
+      "url": "/products",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "About Us",
+      "short_name": "About",
+      "description": "Learn about Reshmi Qureshi Wholesale Jewellery",
+      "url": "/about",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ]
+}

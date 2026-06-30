@@ -1,0 +1,48 @@
+# ═══════════════════════════════════════════════════════════
+# robots.txt — Reshmi Qureshi Wholesale Jewellery
+# Website: https://wholesalejewelryressham.online
+# ═══════════════════════════════════════════════════════════
+
+# Allow all crawlers on all public pages
+User-agent: *
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /legal
+
+# Disallow admin & dashboard pages
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/dashboard
+Disallow: /admin/dashboard/
+Disallow: /dashboard
+Disallow: /dashboard/
+
+# Disallow common sensitive paths
+Disallow: /api/
+Disallow: /.env
+Disallow: /src/
+Disallow: /node_modules/
+
+# Sitemap reference
+Sitemap: https://wholesalejewelryressham.online/sitemap.xml
+
+# ═══════════════════════════════════════════════════════════
+# Crawl-delay for specific bots (optional)
+# ═══════════════════════════════════════════════════════════
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 2

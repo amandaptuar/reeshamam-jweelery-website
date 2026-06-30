@@ -1,1 +1,8 @@
-/* /index.html 200
+# Static files — must NOT be rewritten to index.html
+/sitemap.xml    /sitemap.xml    200
+/robots.txt     /robots.txt     200
+/manifest.json  /manifest.json  200
+/browserconfig.xml /browserconfig.xml 200
+
+# SPA catch-all — all other routes go to index.html
+/*  /index.html  200

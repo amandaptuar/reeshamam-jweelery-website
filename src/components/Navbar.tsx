@@ -13,7 +13,7 @@ export default function Navbar() {
     <>
       <nav>
         <Link to="/" className="logo-wrap">
-          <img src={logo} alt="WholesalejeweleryRessham" className="brand-logo" />
+          <img src={logo} alt="Reshma Qureshi Artificial Jewellery Manufacturer Logo" className="brand-logo" width="200" height="60" fetchPriority="high" decoding="async" />
         </Link>
 
         <ul className="nav-links">

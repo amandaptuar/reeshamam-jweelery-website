@@ -23,7 +23,7 @@ export default function AdminLogin() {
   return (
     <div className="admin-login-page">
       <div className="login-card">
-        <img src={logo} alt="WholesalejeweleryRessham" className="login-logo" />
+        <img src={logo} alt="Reshma Qureshi Admin Portal Logo" className="login-logo" width="200" height="60" fetchPriority="high" decoding="async" />
         <h2 className="login-title">Admin Login</h2>
         <form onSubmit={handleLogin} className="login-form">
           {error && <div className="login-error">{error}</div>}

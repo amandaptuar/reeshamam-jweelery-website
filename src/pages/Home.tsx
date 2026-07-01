@@ -4,7 +4,7 @@ import heroBg from '../assets/hero-bg.png';
 import aboutImg from '../assets/about-img.png';
 import contactBg from '../assets/contact-bg.png';
 import SEOHead from '../components/SEOHead';
-import { BASE_KEYWORDS, HOME_EXTRA_KEYWORDS } from '../lib/seoKeywords';
+import { BASE_KEYWORDS, HOME_EXTRA_KEYWORDS, AEO_KEYWORDS } from '../lib/seoKeywords';
 import topProduct1 from '../assets/image.png';
 import topProduct2 from '../assets/image copy.png';
 import topProduct3 from '../assets/image copy 2.png';
@@ -14,10 +14,10 @@ import topProduct4 from '../assets/image copy 3.png';
    HOME PAGE — SEO CONFIGURATION
 ──────────────────────────────────────────── */
 const HOME_TITLE =
-  'Wholesale Artificial Jewellery Manufacturer & Supplier | Reshmi Qureshi';
-const HOME_KEYWORDS = `${BASE_KEYWORDS}, ${HOME_EXTRA_KEYWORDS}`;
+  'Reshma Qureshi Artificial Jewellery Manufacturer & Wholesale Supplier';
+const HOME_KEYWORDS = `${BASE_KEYWORDS}, ${HOME_EXTRA_KEYWORDS}, ${AEO_KEYWORDS}`;
 const HOME_DESC =
-  'Reshmi Qureshi — Wholesale artificial jewellery manufacturer, exporter & supplier from Mumbai, India. Premium quality fashion jewellery for bulk orders. Est. 2019.';
+  'Reshma Qureshi artificial jewellery manufacturer, exporter & wholesale supplier from Mumbai, India. Premium quality fashion jewellery for bulk orders. Est. 2019.';
 
 
 
@@ -295,6 +295,8 @@ export default function Home() {
                   title={item.title}
                   loading="lazy"
                   decoding="async"
+                  width="400"
+                  height="400"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               </div>

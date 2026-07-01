@@ -246,7 +246,7 @@ export default function AdminDashboard() {
                     </div>
                     
                     <div className="card-img-wrap" style={{ background: 'none' }}>
-                      <img src={product.image_url} alt={product.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <img src={product.image_url} alt={product.title} width="400" height="400" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                     </div>
                     
                     <div className="card-info">

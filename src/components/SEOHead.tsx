@@ -145,6 +145,19 @@ export default function SEOHead({
       'Jewellery Manufacturing',
       'Jewellery Export',
     ],
+    slogan: 'Timeless Beauty. Trusted by Business.',
+    brand: {
+      '@type': 'Brand',
+      name: 'Reshmi Qureshi',
+      slogan: 'Timeless Beauty. Trusted by Business.'
+    },
+    awards: 'Premium Wholesale Jewellery Manufacturer',
+    areaServed: [
+      { '@type': 'Country', name: 'India' },
+      { '@type': 'Country', name: 'United Arab Emirates' },
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'United Kingdom' }
+    ],
   });
 
   // Breadcrumb schema

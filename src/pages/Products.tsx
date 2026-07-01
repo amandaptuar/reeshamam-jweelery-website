@@ -3,11 +3,11 @@ import './Products.css';
 import heroImage from '../assets/product-hero.png';
 import { supabase } from '../lib/supabase';
 import SEOHead from '../components/SEOHead';
-import { BASE_KEYWORDS, PRODUCTS_EXTRA_KEYWORDS } from '../lib/seoKeywords';
+import { BASE_KEYWORDS, PRODUCTS_EXTRA_KEYWORDS, AEO_KEYWORDS } from '../lib/seoKeywords';
 
 const PRODUCTS_TITLE = 'Wholesale Artificial Jewellery Collection — Necklaces, Earrings, Bangles & More | Reshmi Qureshi';
 const PRODUCTS_DESC = 'Browse our wholesale artificial jewellery collection. Necklace sets, earrings, bangles, rings & bracelets. Bulk order pricing, premium quality from Mumbai, India.';
-const PRODUCTS_KEYWORDS = `${BASE_KEYWORDS}, ${PRODUCTS_EXTRA_KEYWORDS}`;
+const PRODUCTS_KEYWORDS = `${BASE_KEYWORDS}, ${PRODUCTS_EXTRA_KEYWORDS}, ${AEO_KEYWORDS}`;
 
 const PRODUCTS_BREADCRUMBS = [
   { name: 'Home', url: '/' },

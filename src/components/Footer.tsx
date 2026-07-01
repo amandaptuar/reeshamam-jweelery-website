@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-logo">
-        <img src={logo} alt="WholesalejeweleryRessham" className="brand-logo" />
+        <img src={logo} alt="Reshma Qureshi Wholesale Jewellery Logo" className="brand-logo" width="200" height="60" loading="lazy" decoding="async" />
       </div>
 
       <div className="footer-links">

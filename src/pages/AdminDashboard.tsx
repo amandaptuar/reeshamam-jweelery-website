@@ -314,6 +314,15 @@ export default function AdminDashboard() {
                       <option value="bangle">Bangle</option>
                       <option value="ring">Ring</option>
                       <option value="bracelet">Bracelet</option>
+                      <option value="kaleera">Kaleera</option>
+                      <option value="bridal-sets">Bridal Sets</option>
+                      <option value="cz-ad-sets">CZ AD Sets</option>
+                      <option value="party-wear-sets">Party Wear Sets</option>
+                      <option value="potlis-usa-orders">Potlis , USA orders</option>
+                      <option value="canada-orders">Canada orders</option>
+                      <option value="uk-orders">UK orders</option>
+                      <option value="europe-orders">Europe orders</option>
+                      <option value="tikas">Tikas</option>
                     </select>
                   </div>
                 </div>

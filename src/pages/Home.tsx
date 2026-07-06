@@ -9,6 +9,7 @@ import topProduct1 from '../assets/image.png';
 import topProduct2 from '../assets/image copy.png';
 import topProduct3 from '../assets/image copy 2.png';
 import topProduct4 from '../assets/image copy 3.png';
+import CategoryCircles from '../components/CategoryCircles';
 
 /* ────────────────────────────────────────────
    HOME PAGE — SEO CONFIGURATION
@@ -174,6 +175,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══ SHOP BY CATEGORY ═══ */}
+      <div style={{ marginTop: '20px' }}>
+        <CategoryCircles />
+      </div>
 
       {/* ═══ ABOUT ═══ */}
       <section className="about" id="about" aria-label="About Reshmi Qureshi Wholesale Jewellery">

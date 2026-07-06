@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './Products.css';
 import heroImage from '../assets/product-hero.png';
 import { supabase } from '../lib/supabase';
@@ -53,6 +54,15 @@ const CATEGORIES = [
   { id: 'bangle', label: 'Bangles' },
   { id: 'ring', label: 'Rings' },
   { id: 'bracelet', label: 'Bracelets' },
+  { id: 'kaleera', label: 'Kaleera' },
+  { id: 'bridal-sets', label: 'Bridal Sets' },
+  { id: 'cz-ad-sets', label: 'CZ AD Sets' },
+  { id: 'party-wear-sets', label: 'Party Wear Sets' },
+  { id: 'potlis-usa-orders', label: 'Potlis , USA orders' },
+  { id: 'canada-orders', label: 'Canada orders' },
+  { id: 'uk-orders', label: 'UK orders' },
+  { id: 'europe-orders', label: 'Europe orders' },
+  { id: 'tikas', label: 'Tikas' },
 ];
 
 function ProductCard({ product }: { product: Product }) {
@@ -125,9 +135,16 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 export default function Products() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryParam = searchParams.get('category') || 'all';
+
+  const [activeCategory, setActiveCategory] = useState(categoryParam);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setActiveCategory(categoryParam);
+  }, [categoryParam]);
 
   useEffect(() => {
     fetchProducts();
@@ -206,7 +223,10 @@ export default function Products() {
               <button
                 key={cat.id}
                 className={`cat-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat.id)}
+                onClick={() => {
+                  setActiveCategory(cat.id);
+                  setSearchParams({ category: cat.id });
+                }}
                 aria-pressed={activeCategory === cat.id}
                 aria-label={`Filter by ${cat.label}`}
               >

@@ -140,12 +140,6 @@
     cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
     border-radius: 2px; color: var(--text-dark);
   }
-  .mobile-sortby-btn {
-    flex: 1; padding: 10px; border: 1.5px solid var(--border); background: var(--white);
-    font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 1px;
-    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-    border-radius: 2px; color: var(--text-dark);
-  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
@@ -158,7 +152,12 @@
     .hero-title { font-size: 30px; }
 
     .mobile-filter-bar { display: flex; }
-    .filter-bar { display: none; }
+    .filter-bar { display: none; flex-direction: column; align-items: stretch; margin-bottom: 24px; padding-top: 16px; }
+    .filter-bar.mobile-open { display: flex; }
+    .categories { flex-direction: column; align-items: stretch; gap: 4px; }
+    .sort-wrap { flex-direction: column; align-items: stretch; margin-top: 8px; }
+    .cat-btn { text-align: left; width: 100%; }
+    .sort-select { width: 100%; }
 
     .products-section { padding: 20px 16px 48px; }
     .products-grid { grid-template-columns: 1fr; gap: 16px; }

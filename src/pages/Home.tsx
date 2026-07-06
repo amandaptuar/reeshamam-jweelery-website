@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import heroBg from '../assets/hero-bg.png';
 import aboutImg from '../assets/about-img.png';
@@ -89,6 +90,7 @@ const HOME_JSON_LD = {
 };
 
 export default function Home() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', type: '', requirements: '' });
 
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
@@ -138,7 +140,7 @@ export default function Home() {
           <p className="hero-desc">Manufacturer, Exporter &amp; Supplier of Premium Quality Fashion Jewellery Crafted with Elegance and Perfection.</p>
 
           <div className="hero-btns">
-            <button className="btn-primary" aria-label="Explore our wholesale jewellery collection">Explore Collection &nbsp;→</button>
+            <button className="btn-primary" aria-label="Explore our wholesale jewellery collection" onClick={() => navigate('/products')}>Explore Collection &nbsp;→</button>
             <a href="https://wa.me/918310696529" target="_blank" rel="noopener noreferrer" className="btn-secondary" aria-label="Contact us on WhatsApp for wholesale jewellery inquiry">
               Get In Touch
             </a>

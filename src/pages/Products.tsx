@@ -141,6 +141,8 @@ export default function Products() {
   const [activeCategory, setActiveCategory] = useState(categoryParam);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [sortBy, setSortBy] = useState('Latest');
 
   useEffect(() => {
     setActiveCategory(categoryParam);
@@ -169,9 +171,20 @@ export default function Products() {
     }
   };
 
-  const filteredProducts = products.filter((product) =>
-    activeCategory === 'all' || product.category === activeCategory
-  );
+  const filteredProducts = products
+    .filter((product) => activeCategory === 'all' || product.category === activeCategory)
+    .sort((a, b) => {
+      if (sortBy === 'Price: Low to High') {
+        const priceA = parseFloat(a.price.replace(/[^\d.-]/g, '')) || 0;
+        const priceB = parseFloat(b.price.replace(/[^\d.-]/g, '')) || 0;
+        return priceA - priceB;
+      } else if (sortBy === 'Price: High to Low') {
+        const priceA = parseFloat(a.price.replace(/[^\d.-]/g, '')) || 0;
+        const priceB = parseFloat(b.price.replace(/[^\d.-]/g, '')) || 0;
+        return priceB - priceA;
+      }
+      return 0; // 'Latest' uses the default order from the DB fetch (created_at desc)
+    });
 
   return (
     <main className="products-page">
@@ -209,14 +222,19 @@ export default function Products() {
 
       {/* ═══════════════════ MOBILE FILTER ═══════════════════ */}
       <div className="mobile-filter-bar" role="toolbar" aria-label="Product filter options">
-        <button className="mobile-filter-btn" aria-label="Filter products by category">☰ &nbsp;Filter</button>
-        <button className="mobile-sortby-btn" aria-label="Sort products">Sort By &nbsp;▾</button>
+        <button 
+          className="mobile-filter-btn" 
+          aria-label="Toggle Filter and Sort"
+          onClick={() => setShowMobileFilters(!showMobileFilters)}
+        >
+          ☰ &nbsp;{showMobileFilters ? 'Hide Filters' : 'Filter & Sort'}
+        </button>
       </div>
 
       {/* ═══════════════════ PRODUCTS ═══════════════════ */}
       <section className="products-section" aria-label="Wholesale jewellery products listing">
-        {/* Desktop Filter Bar */}
-        <div className="filter-bar" role="toolbar" aria-label="Category filter">
+        {/* Desktop & Mobile Filter Bar */}
+        <div className={`filter-bar ${showMobileFilters ? 'mobile-open' : ''}`} role="toolbar" aria-label="Category filter">
           <div className="categories">
             <span className="cat-label">Categories:</span>
             {CATEGORIES.map((cat) => (
@@ -236,10 +254,10 @@ export default function Products() {
           </div>
           <div className="sort-wrap">
             <span className="sort-label">Sort By:</span>
-            <select className="sort-select" aria-label="Sort products">
-              <option>Latest</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
+            <select className="sort-select" aria-label="Sort products" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="Latest">Latest</option>
+              <option value="Price: Low to High">Price: Low to High</option>
+              <option value="Price: High to Low">Price: High to Low</option>
             </select>
           </div>
         </div>

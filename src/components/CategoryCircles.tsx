@@ -3,7 +3,7 @@ import './CategoryCircles.css';
 import img1 from '../assets/image.png';
 import img2 from '../assets/image copy.png';
 import img3 from '../assets/image copy 2.png';
-import img4 from '../assets/image copy 3.png';
+import img4 from '../assets/potli-category.png';
 import img5 from '../assets/about-img.png';
 import img6 from '../assets/our-story.png';
 
@@ -11,7 +11,7 @@ const CIRCLE_CATEGORIES = [
   { id: 'earring', label: 'Earrings', img: img1 },
   { id: 'ring', label: 'Rings', img: img2 },
   { id: 'necklace', label: 'Neckpieces', img: img3 },
-  { id: 'potlis-usa-orders', label: 'Potlis and Clutches', img: img4 },
+  { id: 'potlis', label: 'Potlis and Clutches', img: img4 },
   { id: 'bangle', label: 'Bracelets / Bangles', img: img5 },
   { id: 'bridal-sets', label: 'Bridal Sets', img: img6 },
 ];

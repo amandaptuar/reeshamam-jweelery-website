@@ -318,7 +318,8 @@ export default function AdminDashboard() {
                       <option value="bridal-sets">Bridal Sets</option>
                       <option value="cz-ad-sets">CZ AD Sets</option>
                       <option value="party-wear-sets">Party Wear Sets</option>
-                      <option value="potlis-usa-orders">Potlis , USA orders</option>
+                      <option value="potlis">Potlis</option>
+                      <option value="usa-orders">USA Orders</option>
                       <option value="canada-orders">Canada orders</option>
                       <option value="uk-orders">UK orders</option>
                       <option value="europe-orders">Europe orders</option>

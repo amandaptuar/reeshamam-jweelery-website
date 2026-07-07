@@ -16,8 +16,8 @@ const PRODUCTS_BREADCRUMBS = [
 ];
 
 const PRODUCTS_FAQS = [
-  { question: 'What jewellery categories are available for wholesale purchase?', answer: 'We offer wholesale artificial jewellery across multiple categories including necklace sets, earrings, bangles, rings, bracelets, and bridal jewellery sets. All available for bulk orders.' },
-  { question: 'Can I filter jewellery by category?', answer: 'Yes, you can browse our wholesale jewellery collection by category: All Products, Necklace Sets, Earrings, Bangles, Rings, and Bracelets. Use the filter bar at the top of the products page.' },
+  { question: 'What jewellery categories are available for wholesale purchase?', answer: 'We offer wholesale artificial jewellery across multiple categories including necklace sets, earrings, bangles, bridal sets with pasa, hathpan, and bridal jewellery sets. All available for bulk orders.' },
+  { question: 'Can I filter jewellery by category?', answer: 'Yes, you can browse our wholesale jewellery collection by category: All Products, Necklace Sets, Earrings, Bangles, Bridal sets with pasa, and Hathpan. Use the filter bar at the top of the products page.' },
   { question: 'How do I place a wholesale order for jewellery?', answer: 'Click the "Order on WhatsApp" button on any product to send an inquiry directly to our team. We will respond with availability, pricing, and minimum order details.' },
   { question: 'Do you have bridal jewellery sets for wholesale?', answer: 'Yes, we manufacture premium quality wholesale artificial bridal jewellery sets including kundan, polki, American diamond, and gold-plated designs suitable for weddings and occasions.' },
 ];
@@ -52,8 +52,8 @@ const CATEGORIES = [
   { id: 'necklace', label: 'Necklace Sets' },
   { id: 'earring', label: 'Earrings' },
   { id: 'bangle', label: 'Bangles' },
-  { id: 'ring', label: 'Rings' },
-  { id: 'bracelet', label: 'Bracelets' },
+  { id: 'ring', label: 'Bridal sets with pasa' },
+  { id: 'bracelet', label: 'Hathpan' },
   { id: 'kaleera', label: 'Kaleera' },
   { id: 'bridal-sets', label: 'Bridal Sets' },
   { id: 'cz-ad-sets', label: 'CZ AD Sets' },

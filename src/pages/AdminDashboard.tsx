@@ -312,8 +312,8 @@ export default function AdminDashboard() {
                       <option value="necklace">Necklace</option>
                       <option value="earring">Earring</option>
                       <option value="bangle">Bangle</option>
-                      <option value="ring">Ring</option>
-                      <option value="bracelet">Bracelet</option>
+                      <option value="ring">Bridal sets with pasa</option>
+                      <option value="bracelet">Hathpan</option>
                       <option value="kaleera">Kaleera</option>
                       <option value="bridal-sets">Bridal Sets</option>
                       <option value="cz-ad-sets">CZ AD Sets</option>

@@ -11,6 +11,10 @@ import topProduct2 from '../assets/image copy.png';
 import topProduct3 from '../assets/image copy 2.png';
 import topProduct4 from '../assets/image copy 3.png';
 import CategoryCircles from '../components/CategoryCircles';
+import newTopProduct1 from '../assets/top/image.png';
+import newTopProduct2 from '../assets/top/image copy.png';
+import newTopProduct3 from '../assets/top/image copy 2.png';
+import newTopProduct4 from '../assets/top/image copy 3.png';
 
 /* ────────────────────────────────────────────
    HOME PAGE — SEO CONFIGURATION
@@ -39,7 +43,7 @@ const HOME_FAQS = [
   {
     question: 'What types of artificial jewellery do you manufacture?',
     answer:
-      'We manufacture a wide range of artificial jewellery including necklace sets, earrings, bangles, rings, bracelets, bridal jewellery, oxidised jewellery, gold-plated jewellery, kundan, polki, and American diamond jewellery.',
+      'We manufacture a wide range of artificial jewellery including necklace sets, earrings, bangles, bridal sets with pasa, hathpan, bridal jewellery, oxidised jewellery, gold-plated jewellery, kundan, polki, and American diamond jewellery.',
   },
   {
     question: 'Are you a manufacturer or a reseller of artificial jewellery?',
@@ -188,7 +192,7 @@ export default function Home() {
         <div className="about-img-wrap">
           <img
             className="about-img"
-            src={aboutImg}
+            src={topProduct4}
             alt="Reshmi Qureshi — Wholesale artificial jewellery manufacturer and exporter, Mumbai India"
             title="About Reshmi Qureshi Wholesale Jewellery — Est. 2019"
             width="600"
@@ -290,10 +294,10 @@ export default function Home() {
         
         <div className="products-grid">
           {[
-            { img: topProduct1, label: 'Wholesale artificial jewellery piece 1 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 1' },
-            { img: topProduct2, label: 'Wholesale artificial jewellery piece 2 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 2' },
-            { img: topProduct3, label: 'Wholesale artificial jewellery piece 3 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 3' },
-            { img: topProduct4, label: 'Wholesale artificial jewellery piece 4 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 4' },
+            { img: newTopProduct1, label: 'Wholesale artificial jewellery piece 1 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 1' },
+            { img: newTopProduct2, label: 'Wholesale artificial jewellery piece 2 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 2' },
+            { img: newTopProduct3, label: 'Wholesale artificial jewellery piece 3 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 3' },
+            { img: newTopProduct4, label: 'Wholesale artificial jewellery piece 4 — Reshmi Qureshi', title: 'Exquisite Jewellery Set 4' },
           ].map((item, index) => (
             <div className="product-card" key={index}>
               <div className="product-img-wrap">

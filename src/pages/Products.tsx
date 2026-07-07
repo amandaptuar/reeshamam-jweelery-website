@@ -41,6 +41,8 @@ interface Product {
   id: string;
   title: string;
   image_url: string;
+  image_url_2?: string;
+  image_url_3?: string;
   category: string;
   quantity_label: string;
   price: string;
@@ -56,18 +58,36 @@ const CATEGORIES = [
   { id: 'bracelet', label: 'Hathpan' },
   { id: 'kaleera', label: 'Kaleera' },
   { id: 'bridal-sets', label: 'Bridal Sets' },
-  { id: 'cz-ad-sets', label: 'CZ AD Sets' },
-  { id: 'party-wear-sets', label: 'Party Wear Sets' },
+  { id: 'full-bridal-sets', label: 'Full Bridal sets' },
+  { id: 'mossonite-sets', label: 'Mossonite sets' },
+  { id: 'sabyasachi-sets', label: 'Sabyasachi sets' },
+  { id: 'cz-ad-sets', label: 'CZ AD sets' },
+  { id: 'party-wear-sets', label: 'Party wear sets' },
   { id: 'potlis', label: 'Potlis' },
-  { id: 'usa-orders', label: 'USA Orders' },
+  { id: 'tikas', label: 'Tikas' },
+  { id: 'usa-orders', label: 'USA orders' },
   { id: 'canada-orders', label: 'Canada orders' },
   { id: 'uk-orders', label: 'UK orders' },
   { id: 'europe-orders', label: 'Europe orders' },
-  { id: 'tikas', label: 'Tikas' },
+  { id: 'worldwide-shipping', label: 'Worldwide shipping' },
 ];
 
 function ProductCard({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = [product.image_url, product.image_url_2, product.image_url_3].filter(Boolean) as string[];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+  
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   const WHATSAPP_NUMBER = "918310696529";
   const whatsappMessage = `I'm interested in ordering:\nProduct: ${product.title}\nID: ${product.id}\nPrice Per Pc: ${product.price}\nImage Link: ${product.image_url}`;
 
@@ -88,9 +108,9 @@ function ProductCard({ product }: { product: Product }) {
         </button>
       </div>
 
-      <div className="card-img-wrap" style={{ background: 'none' }} itemProp="image">
+      <div className="card-img-wrap" style={{ background: 'none', position: 'relative', overflow: 'hidden' }} itemProp="image">
         <img
-          src={product.image_url}
+          src={images[currentImageIndex]}
           alt={`${product.title} — wholesale artificial jewellery by Reshmi Qureshi, Mumbai India`}
           title={`${product.title} | Wholesale Artificial Jewellery`}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -99,6 +119,17 @@ function ProductCard({ product }: { product: Product }) {
           width="400"
           height="400"
         />
+        {images.length > 1 && (
+          <>
+            <button className="carousel-btn prev" onClick={prevImage} aria-label="Previous image" style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: '#000', zIndex: 2 }}>‹</button>
+            <button className="carousel-btn next" onClick={nextImage} aria-label="Next image" style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: '#000', zIndex: 2 }}>›</button>
+            <div className="carousel-dots" style={{ position: 'absolute', bottom: '12px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '6px', zIndex: 2 }}>
+              {images.map((_, i) => (
+                <span key={i} className={`dot ${i === currentImageIndex ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setCurrentImageIndex(i); }} style={{ width: '8px', height: '8px', borderRadius: '50%', background: i === currentImageIndex ? 'var(--gold)' : 'rgba(255,255,255,0.6)', cursor: 'pointer', transition: 'background 0.3s ease' }} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <div className="card-info" itemProp="offers" itemScope itemType="https://schema.org/Offer">

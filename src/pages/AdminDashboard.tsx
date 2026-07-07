@@ -8,6 +8,8 @@ interface Product {
   id: string;
   title: string;
   image_url: string;
+  image_url_2?: string;
+  image_url_3?: string;
   category: string;
   quantity_label: string;
   price: string;
@@ -31,6 +33,8 @@ export default function AdminDashboard() {
   const [price, setPrice] = useState('');
   const [inStock, setInStock] = useState(true);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageFile2, setImageFile2] = useState<File | null>(null);
+  const [imageFile3, setImageFile3] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -72,6 +76,8 @@ export default function AdminDashboard() {
     setQuantity('10+ Pcs');
     setInStock(true);
     setImageFile(null);
+    setImageFile2(null);
+    setImageFile3(null);
     setIsModalOpen(true);
   };
 
@@ -83,6 +89,8 @@ export default function AdminDashboard() {
     setQuantity(product.quantity_label);
     setInStock(product.in_stock);
     setImageFile(null); 
+    setImageFile2(null);
+    setImageFile3(null);
     setIsModalOpen(true);
   };
 
@@ -102,25 +110,22 @@ export default function AdminDashboard() {
 
     try {
       let publicUrl = undefined;
+      let publicUrl2 = undefined;
+      let publicUrl3 = undefined;
 
-      // 1. Upload new image if provided
-      if (imageFile) {
-        const fileExt = imageFile.name.split('.').pop();
+      const uploadImage = async (file: File) => {
+        const fileExt = file.name.split('.').pop();
         const fileName = `${Math.random()}.${fileExt}`;
         const filePath = `public/${fileName}`;
+        const { error } = await supabase.storage.from('product-images').upload(filePath, file);
+        if (error) throw error;
+        const { data } = supabase.storage.from('product-images').getPublicUrl(filePath);
+        return data.publicUrl;
+      };
 
-        const { error: uploadError } = await supabase.storage
-          .from('product-images')
-          .upload(filePath, imageFile);
-
-        if (uploadError) throw uploadError;
-
-        const { data } = supabase.storage
-          .from('product-images')
-          .getPublicUrl(filePath);
-          
-        publicUrl = data.publicUrl;
-      }
+      if (imageFile) publicUrl = await uploadImage(imageFile);
+      if (imageFile2) publicUrl2 = await uploadImage(imageFile2);
+      if (imageFile3) publicUrl3 = await uploadImage(imageFile3);
 
       // 2. Insert or Update DB
       if (editingProductId) {
@@ -132,6 +137,8 @@ export default function AdminDashboard() {
           in_stock: inStock
         };
         if (publicUrl) updateData.image_url = publicUrl;
+        if (publicUrl2) updateData.image_url_2 = publicUrl2;
+        if (publicUrl3) updateData.image_url_3 = publicUrl3;
 
         const { error: updateError } = await supabase
           .from('products')
@@ -150,7 +157,9 @@ export default function AdminDashboard() {
               quantity_label: quantity,
               price,
               in_stock: inStock,
-              image_url: publicUrl
+              image_url: publicUrl,
+              image_url_2: publicUrl2,
+              image_url_3: publicUrl3
             }
           ]);
 
@@ -311,19 +320,23 @@ export default function AdminDashboard() {
                     <select value={category} onChange={e => setCategory(e.target.value)} style={{ color: '#000', borderColor: '#000' }}>
                       <option value="necklace">Necklace</option>
                       <option value="earring">Earring</option>
-                      <option value="bangle">Bangle</option>
+                      <option value="bangle">Bangles</option>
                       <option value="ring">Bridal sets with pasa</option>
                       <option value="bracelet">Hathpan</option>
                       <option value="kaleera">Kaleera</option>
                       <option value="bridal-sets">Bridal Sets</option>
-                      <option value="cz-ad-sets">CZ AD Sets</option>
-                      <option value="party-wear-sets">Party Wear Sets</option>
+                      <option value="full-bridal-sets">Full Bridal sets</option>
+                      <option value="mossonite-sets">Mossonite sets</option>
+                      <option value="sabyasachi-sets">Sabyasachi sets</option>
+                      <option value="cz-ad-sets">CZ AD sets</option>
+                      <option value="party-wear-sets">Party wear sets</option>
                       <option value="potlis">Potlis</option>
-                      <option value="usa-orders">USA Orders</option>
+                      <option value="tikas">Tikas</option>
+                      <option value="usa-orders">USA orders</option>
                       <option value="canada-orders">Canada orders</option>
                       <option value="uk-orders">UK orders</option>
                       <option value="europe-orders">Europe orders</option>
-                      <option value="tikas">Tikas</option>
+                      <option value="worldwide-shipping">Worldwide shipping</option>
                     </select>
                   </div>
                 </div>
@@ -339,11 +352,21 @@ export default function AdminDashboard() {
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label style={{ color: '#000' }}>Product Image {editingProductId && '(Leave blank to keep current)'}</label>
+                <div className="form-row" style={{ flexWrap: 'wrap' }}>
+                  <div className="form-group" style={{ flex: '1 1 100%' }}>
+                    <label style={{ color: '#000' }}>Product Image 1 (Main) {editingProductId && '(Leave blank to keep current)'}</label>
                     <input type="file" accept="image/*" onChange={e => setImageFile(e.target.files?.[0] || null)} required={!editingProductId} style={{ color: '#000', borderColor: '#000' }} />
                   </div>
+                  <div className="form-group" style={{ flex: '1 1 48%' }}>
+                    <label style={{ color: '#000' }}>Product Image 2 (Optional) {editingProductId && '(Leave blank to keep current)'}</label>
+                    <input type="file" accept="image/*" onChange={e => setImageFile2(e.target.files?.[0] || null)} style={{ color: '#000', borderColor: '#000' }} />
+                  </div>
+                  <div className="form-group" style={{ flex: '1 1 48%' }}>
+                    <label style={{ color: '#000' }}>Product Image 3 (Optional) {editingProductId && '(Leave blank to keep current)'}</label>
+                    <input type="file" accept="image/*" onChange={e => setImageFile3(e.target.files?.[0] || null)} style={{ color: '#000', borderColor: '#000' }} />
+                  </div>
+                </div>
+                <div className="form-row">
                   <div className="form-group checkbox-group">
                     <label style={{ color: '#000' }}>
                       <input type="checkbox" checked={inStock} onChange={e => setInStock(e.target.checked)} />

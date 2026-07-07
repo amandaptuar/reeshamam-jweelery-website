@@ -16,6 +16,79 @@ interface Product {
   in_stock: boolean;
 }
 
+function AdminProductCard({ product, onEdit, onToggleStock, onDelete }: { product: Product, onEdit: (p: Product) => void, onToggleStock: (id: string, current: boolean) => void, onDelete: (id: string, url: string) => void }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = [product.image_url, product.image_url_2, product.image_url_3].filter(Boolean) as string[];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+  
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="card">
+      <div className="card-header">
+        <span className="card-title">{product.title}</span>
+      </div>
+      
+      <div className="card-img-wrap" style={{ background: 'none', position: 'relative', overflow: 'hidden' }}>
+        <img src={images[currentImageIndex]} alt={product.title} width="400" height="400" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        {images.length > 1 && (
+          <>
+            <button className="carousel-btn prev" onClick={prevImage} aria-label="Previous image" style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: '#000', zIndex: 2 }}>‹</button>
+            <button className="carousel-btn next" onClick={nextImage} aria-label="Next image" style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: '#000', zIndex: 2 }}>›</button>
+            <div className="carousel-dots" style={{ position: 'absolute', bottom: '12px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '6px', zIndex: 2 }}>
+              {images.map((_, i) => (
+                <span key={i} className={`dot ${i === currentImageIndex ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setCurrentImageIndex(i); }} style={{ width: '8px', height: '8px', borderRadius: '50%', background: i === currentImageIndex ? 'var(--gold)' : 'rgba(255,255,255,0.6)', cursor: 'pointer', transition: 'background 0.3s ease' }} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      
+      <div className="card-info">
+        <div className="info-col">
+          <div className="info-label">Minimum Quantity</div>
+          <div className="info-value">{product.quantity_label}</div>
+        </div>
+        <div className="info-col">
+          <div className="info-label">Price Range</div>
+          <div className="info-value">{product.price}</div>
+        </div>
+        <div className="info-col">
+          <div className="info-label">In Stock</div>
+          <div className={`info-value ${product.in_stock ? 'in-stock' : ''}`} style={{ color: product.in_stock ? '#000' : '#c62828' }}>
+            {product.in_stock ? 'In Stock' : 'Out of Stock'}
+          </div>
+        </div>
+      </div>
+      
+      <div className="admin-card-actions-row">
+        <button 
+          onClick={() => onEdit(product)}
+          className="btn-admin-action edit"
+        >
+          Edit
+        </button>
+        <button 
+          onClick={() => onToggleStock(product.id, product.in_stock)}
+          className={`btn-admin-action ${product.in_stock ? 'stock-in' : 'stock-out'}`}
+        >
+          {product.in_stock ? 'Hide' : 'Show'}
+        </button>
+        <button onClick={() => onDelete(product.id, product.image_url)} className="btn-admin-action delete">
+          Delete
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
@@ -35,6 +108,9 @@ export default function AdminDashboard() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageFile2, setImageFile2] = useState<File | null>(null);
   const [imageFile3, setImageFile3] = useState<File | null>(null);
+  const [currentImage1, setCurrentImage1] = useState<string | null>(null);
+  const [currentImage2, setCurrentImage2] = useState<string | null>(null);
+  const [currentImage3, setCurrentImage3] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -78,6 +154,9 @@ export default function AdminDashboard() {
     setImageFile(null);
     setImageFile2(null);
     setImageFile3(null);
+    setCurrentImage1(null);
+    setCurrentImage2(null);
+    setCurrentImage3(null);
     setIsModalOpen(true);
   };
 
@@ -91,6 +170,9 @@ export default function AdminDashboard() {
     setImageFile(null); 
     setImageFile2(null);
     setImageFile3(null);
+    setCurrentImage1(product.image_url);
+    setCurrentImage2(product.image_url_2 || null);
+    setCurrentImage3(product.image_url_3 || null);
     setIsModalOpen(true);
   };
 
@@ -249,50 +331,13 @@ export default function AdminDashboard() {
             <div className="products-page" style={{ background: 'transparent', padding: 0 }}>
               <div className="products-grid">
                 {products.map(product => (
-                  <div key={product.id} className="card">
-                    <div className="card-header">
-                      <span className="card-title">{product.title}</span>
-                    </div>
-                    
-                    <div className="card-img-wrap" style={{ background: 'none' }}>
-                      <img src={product.image_url} alt={product.title} width="400" height="400" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                    </div>
-                    
-                    <div className="card-info">
-                      <div className="info-col">
-                        <div className="info-label">Minimum Quantity</div>
-                        <div className="info-value">{product.quantity_label}</div>
-                      </div>
-                      <div className="info-col">
-                        <div className="info-label">Price Range</div>
-                        <div className="info-value">{product.price}</div>
-                      </div>
-                      <div className="info-col">
-                        <div className="info-label">In Stock</div>
-                        <div className={`info-value ${product.in_stock ? 'in-stock' : ''}`} style={{ color: product.in_stock ? '#000' : '#c62828' }}>
-                          {product.in_stock ? 'In Stock' : 'Out of Stock'}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="admin-card-actions-row">
-                      <button 
-                        onClick={() => handleEdit(product)}
-                        className="btn-admin-action edit"
-                      >
-                        Edit
-                      </button>
-                      <button 
-                        onClick={() => toggleStock(product.id, product.in_stock)}
-                        className={`btn-admin-action ${product.in_stock ? 'stock-in' : 'stock-out'}`}
-                      >
-                        {product.in_stock ? 'Hide' : 'Show'}
-                      </button>
-                      <button onClick={() => handleDelete(product.id, product.image_url)} className="btn-admin-action delete">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
+                  <AdminProductCard 
+                    key={product.id} 
+                    product={product} 
+                    onEdit={handleEdit} 
+                    onToggleStock={toggleStock} 
+                    onDelete={handleDelete} 
+                  />
                 ))}
                 
                 {products.length === 0 && <p className="no-products" style={{ gridColumn: '1 / -1' }}>No products found. Add some above!</p>}
@@ -355,14 +400,17 @@ export default function AdminDashboard() {
                 <div className="form-row" style={{ flexWrap: 'wrap' }}>
                   <div className="form-group" style={{ flex: '1 1 100%' }}>
                     <label style={{ color: '#000' }}>Product Image 1 (Main) {editingProductId && '(Leave blank to keep current)'}</label>
+                    {currentImage1 && <img src={currentImage1} alt="Preview 1" style={{ width: '80px', height: '80px', objectFit: 'cover', marginBottom: '8px', borderRadius: '4px', border: '1px solid #ddd' }} />}
                     <input type="file" accept="image/*" onChange={e => setImageFile(e.target.files?.[0] || null)} required={!editingProductId} style={{ color: '#000', borderColor: '#000' }} />
                   </div>
                   <div className="form-group" style={{ flex: '1 1 48%' }}>
                     <label style={{ color: '#000' }}>Product Image 2 (Optional) {editingProductId && '(Leave blank to keep current)'}</label>
+                    {currentImage2 && <img src={currentImage2} alt="Preview 2" style={{ width: '80px', height: '80px', objectFit: 'cover', marginBottom: '8px', borderRadius: '4px', border: '1px solid #ddd' }} />}
                     <input type="file" accept="image/*" onChange={e => setImageFile2(e.target.files?.[0] || null)} style={{ color: '#000', borderColor: '#000' }} />
                   </div>
                   <div className="form-group" style={{ flex: '1 1 48%' }}>
                     <label style={{ color: '#000' }}>Product Image 3 (Optional) {editingProductId && '(Leave blank to keep current)'}</label>
+                    {currentImage3 && <img src={currentImage3} alt="Preview 3" style={{ width: '80px', height: '80px', objectFit: 'cover', marginBottom: '8px', borderRadius: '4px', border: '1px solid #ddd' }} />}
                     <input type="file" accept="image/*" onChange={e => setImageFile3(e.target.files?.[0] || null)} style={{ color: '#000', borderColor: '#000' }} />
                   </div>
                 </div>
